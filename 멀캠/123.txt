@@ -1,0 +1,1625 @@
+-------------------------------------
+Coursera
+Edx
+Udacity** -> introduction to machine learning / sebastian thug
+K-MOOC
+
+codecademy.com
+
+
+[JS]
+www.trio.co.lr
+www.koxo.com
+
+@ https://www.caniuse.com/
+------------------------------------------------
+[JDBC 프로그래밍 정리]
+ODBC : --> C, C++ 
+- JDBC API (interface) + JDBC Driver
+  java.sql		 DB서버에 따라 추가로 준비
+- JDBC 프로그램의 구현 과정
+  (1) JDBC 드라이버 로딩 (java.lang -> Class.forName(대표클래스이름))
+  (2) DB서버 접속 (DriverManager.getConnection("JDBC URL", "ID", "PWD"));
+  (3) Statement, PreparedStatement 객체 생성  --> 팩토리메서드는 Connection에 있음.(createStatement())
+  (4) executeQuery(), executeUpdate(), execute() : 아무거나 수행할 수 있지만, 메서드 호출을 더 해야함.
+       -> ResultSet	-> int (return)
+       -> select 결과가 없으면 빈 resultset 리턴됨. : next()메서드 호출로 알수있음.
+	  next(), getXxx() / 변화된 행의 갯수
+  (5) 연결된 자원 해제 : close() 
+
+
+-----------------------------------------------
+오후 4:49 2019-05-24
+
+
+[웹 프로그래밍]
+
+  웹 클라이언트 : HTML, CSS // JavaScript, Ajax // HTML5 주요 API(WebSocket, storage ...)
+  웹 서버 : Servlet & JSP, Spring FW / Spring MVC, MyBatis(jdbc 보완버젼 / hybernate 등)
+  웹기반 시각화 : D3.js
+  오픈 API : 네이버 또는 구글
+
+  웹 서버 - Tomcat(Web Application Server : WAS -> 서블릿 jsp 등 지원함.)
+  웹 클라이언트 - 크롬
+
+
+
+톰캣 설치시 포트번호 확인 / run apache tomcat 체크해제 -> 이클립스에서 등록
+
+  javaexam - java project
+  edu - Dynamic Web project
+
+  (1) Tomcat 서버를 eclipse에 등록
+  (2) edu 생성
+  (3) edu를 Tomcat 서버에 등록
+  (4) first.html 파일을 생성
+  (5) 브라우저(크롬)에서 first.html 요청
+
+  1. 서버등록
+  => new -> other -> 서버 > Tomcat v9.0 선택 > tomcat installation directory 설정
+  2.
+  => new -> other -> web-Dynamic Web Project > target runtime에 등록된 아파치 확인 > 
+     generate web,xml ~ 체크 후 finish
+     프로젝트 -> properties -> 텍스트 인코딩 : UTF-8로 변경
+  3.
+  => servers -> tomcat~ 우클릭 후 add and remove -> edu 오른쪽으로
+  4.
+  => 
+	http://localhost:8000/edu/first.html
+
+오전 9:21 2019-05-27
+      ==http://"자신의 아이피":8000/edu/first.html --> HTTP URL 문자열
+   프로토콜명 + URL
+   통신하기 위해 통신규약이 필요 / http는 웹의 표준 프로토콜
+   
+  localhost:8000/edu/first.html
+                --------------- 
+                   URI 문자열
+                ----
+                컨텍스트패스
+   ---------------------------- 
+               URL
+
+  최상위 폴더는 WebContent( 도큐먼트 루트 or doc base directory ) -> 수정가능
+
+  WebContent/images ---- 이미지 파일들
+	    /htmlexam -- HTML 파일들
+
+window - preference - web - html(css,jsp) files - encoding
+
+
+required : html5부터 적용
+	
+체크박스는 밸류 속성 반드시
+
+이름이 같아야 하나의 그룹으로 묶이고 밸류를 다르게 해야 구분 가능
+
+fieldset : 박싱 처리
+필드셋의 제목 : legend
+
+네임속성이 있어야 쿼리가능
+
+select 태그 : 선택항목 갯수많을수록 유용
+
+multiple : html5추가 / input type="file" 속성일경우
+
+/////
+figure
+	img
+	figcaption
+
+i or em
+
+
+
+-------------------------------------------------------
+오전 9:16 2019-05-28
+
+
+# html에서 여러개의 공백은 하나로 인식됨
+	&nbsp; : 공백 1개
+
+<style>
+	선택자 {
+		CSS속성명 : CSS속성값;
+		     :
+	}
+
+</style>
+
+@ 선택자의 종류 : 전체선택자(*) -> *
+		태그선택자(타입선택자) -> 태그명
+		그룹선택자 -> 태그명, 태그명, ...
+		클래스선택자 -> .class속성값
+		아이디선택자 -> #id속성값
+		자식선택자 -> 부모태그>자식태그
+		자손선택자 -> 조상태그 자손태그
+		형제선택자 -> 언니태그~동생태그들, 언니태그+동생태그
+		속성선택자 -> [속성명]
+			      [속성명=속성값]
+			      [속성명^=속성값]	
+			      [속성명$=속성값] : 속성값으로 끝나는
+				      img[src$=png]
+		
+		a:hover (마우스가 올라간 a태그)
+		p:first-letter
+
+
+
+@ [ HTML 태그에 대한 렌더링 규칙 ]
+  태그마다 출력되는 영역을 정하는 규칙에 따라 
+  inline style 태그와 block style 태그로 나뉨
+  a, img, input, span    hn, div(...), table, ul, ol, p, form
+
+inline은 width, height로 사이즈 조절 불가 -> 하려면 padding으로
+사이즈 조절은 block style만 가능.
+
+margin : 값1 -> 상하좌우
+margin : 값1 값2 -> 상하 좌우 
+블럭 태그 margin 좌우 값을 auto로 하면 가운데 정렬
+
+span 태그들을 가운데 정렬 -> div나 기타 태그로 감싼 후 text-align 가운데정렬
+
+gradient는 이미지로 적용됨, 칼라는 적용안됨
+
+
+
+
+-------------------------------------
+오전 11:50 2019-05-29
+
+[자바스크립트]
+ -> 동적인 웹페이지 제작에 사용되는 언어, OOP
+	넷스케이프->ECMA(오픈언어)
+	정적인 웹 페이지를 생산하는 HTML을 보완하는 프로그래밍 언어
+	초기에는 라이브스크립트로 불림.
+	CSS와 동일하게 HTML 문서안에 작성 가능 / 독립된 파일(xxx.js로 권장)로 만든 후 HTML 문서안으로 import 가능
+
+@ [자바스크립트 구문 정리]
+  (1) 데이터 타입, 변수 생성 방법
+  (2) 연산자
+  (3) 제어문 (for, enhanced for, while, do while, if, switch, break, continue)
+  (4) 배열
+  (5) 함수
+  (6) 객체 생성 - 방법 1: 객체 리터럴
+		  방법 2: 클래스
+  (7) 주요 API - 내장함수, 내장객체, BOM, DOM
+
+
+  (1) 자바스크립트의 데이터 타입 :
+	number
+	boolean
+	string (기본형)
+	undefined
+	object
+	function
+
+
+----------------------------------------------------
+오전 9:34 2019-05-30
+
+0은 false로 간주, 1은 true로 간주
+undefined도 false로 간주
+
+@ [ 자바스크립트의 배열 ]
+  - 배열 생성 방법 :
+	(1) 배열 리터럴
+	   [값1, 값2, 값3 ... ]	
+	(2) 표준 API(Array()라는 생성자 함수)로 객체를 생성하여 만드는 방법
+	   new Array()
+	   new Array(숫자)
+	   new Array(값1, 값2, ... )
+
+  [ 특징 ]
+  하나의 배열에 저장되는 데이터 타입의 제한이 없다.
+  배열이 생성된 이후에도  배열의 크기를 변경할 수 있다.
+  인덱스는 0부터 시작한다.
+
+
+var ary = [11, 30, 40, 2, 4];
+ary.sort(); 
+후 출력 ->
+
+
+
+
+
+
+
+@ [ 함수 정의와 활용 ]
+  - 함수의 정의
+	(1) 선언적 함수정의(명시적 함수정의)
+
+		function 함수명([매개변수 리스트]) {
+			:
+			[return 리턴값]
+		}  
+
+		// 리턴값 명시하지 않음 // 리턴값 생략가능
+		// 리턴값 없이 리턴했을 경우 undefined가 리턴됨.
+		// 호출법 : 함수명();
+		// var v = 함수명();
+		// 함수명(아규먼트리스트);
+
+	(2) 표현식 함수정의
+
+		function([매개변수리스트]) {
+			:
+		} 
+
+		ex> var 함수명 = function ([매개변수리스트]) {
+			-> 이때의 변수명은 함수명을 대신한다.
+				 }
+		rv로 함수정의를 사용 => 함수표현식 == 익명함수
+		f1 (function() {...})			
+
+
+  function out() {
+	arguments
+  }
+ 
+  함수가 호출되는 시점에 arguments라는 지역변수가 자동으로 초기화된다.
+  함수 호출시 전달되는 아규먼트들을 유사배열 객체에 담아서 arguments라는 
+  변수에 할당한다.
+
+
+
+  p, ..., p -> 가변인자
+
+
+
+
+$ 한 HTML 파일에 script 태그가 여러개 있을 경우 스크립트간 함수 호출은 가능하지만
+  위 스크립트에서 밑 스크립트에 있는 함수를 호출할 수 없다.
+
+
+$ 스크립트 태그 안에서 에러가 나면 그 이후 스크립트 코드를 무시하고 html 파일로 돌아간다.
+
+$ 함수정의부분을 먼저 읽기 때문에 호출부를 먼저 작성하고 정의해도 무관 (다른 스크립트 태그는 불가)
+
+
+@ [ 자바스크립트 객체 ]
+  OBP (Object Based P) --> OOP
+  - 객체 생성 방법
+    (1) 객체 리터럴
+ 	{ } : 중괄호로 묶이면 객체 
+	{ 속성명 : 속성값, 속성명 : 속성값 ... }
+		   ------
+		   숫자, 문자열, 논리값, 배열, 함수
+					       ----
+					       메서드
+  # 객체 생성 시 this 반드시 필요
+
+    (2) 생성자 함수 (자바의 클래스와 유사) (클래스 + 생성자메서드)
+	객체를 초기화하는 역할의 함수(비어있는 객체에 멤버들을 넣어주는 역할)
+	new 와 함께 호출된다. 
+	이름을 정할 때 첫 글자를 대문자로 한다. (권장)
+		
+  	new Student(...)
+     
+
+
+  - 객체의 맴버 접근 방법
+    (1) 멤버 연산자 : .
+    (2) 인덱싱 방법 : [속성명]
+	obj.name    == obj['name'] -> 속성명은 문자열로
+	obj.project == obj['project']
+	obj.study()
+	obj.eat('딸기')
+	
+
+
+
+변수는 생성자 함수에, 메서드는 프로토타입에. (객체 리터럴은 불가)	
+static은 아님, 객체를 통해 호출해야 함.
+
+
+------------------------------------------------------
+오전 10:37 2019-06-03
+$ 자바스크립트에서는 인스턴스메서드에서 정적맴버에 접근하면 에러./
+
+$ 생성자함수이름 메서드 vs. 프로토타입 생성자함수 메서드
+  -> 객체를 생성해야 접근가능. 한번만 메모리영역에 할당된다는 점은 같음.
+
+$ 정적메서드로 정의된 메서드 안에서는 this 사용 불가
+
+@ [ BOM & DOM ]
+  BOM : Browser Object Model
+	브라우저가 제공하는 자바스크립트 API
+	미리 객체를 생성해서 제공
+	window 객체, location 객체, document, history, screen, navigator
+
+    - window 객체
+	id = setInterval(func, 밀리초시간)// window 객체 생략가능
+	clearInterval(id) -> setInterval로 설정한 값을 해제 시킴. id를 argument로 지정하여 해제
+	
+	id = setTimeout(func, 밀리초시간) -> 몇 초 후 한번만 실행
+	clearTimeout(id); 
+
+	alert(), confirm(), prompt(), open()
+    
+    - location 객체
+	href 
+	reload() : 현재 페이지를 자동으로 새로고침.
+
+    - history 객체
+	go() : go(-1) -> 전 페이지로 이동 / go(n) : 현재페이지 기준 1, -1 
+
+    - screen 객체
+	width, height
+
+    - navigator 객체
+	user-agent, getLocation()
+
+    - document 객체
+	write(), writeln()
+	DOM 프로그래밍 가능
+
+  DOM : Document Object Model
+	브라우저의 HTML 파서들은 파싱한 HTML 문서의 각각의 태그들, 태그의 속성들,
+	태그의 텍스트 형식의 컨텐트들 모두 자바스크립트 객체로 생성한다.
+	---> 자바스크립트에서 접근 가능하도록 지원하기 위해
+	document 객체의 자손 객체로 등록한다.
+	바디 태그에 대한 돔 객체는 document.body임.
+
+	document.getElementById("id 속성값")		태그에 정의된 아이디 속성
+	document.getElementsClassName("class 속성값") 	태그에 정의된 클래스속성
+	document.getElementsTagname("태그명")		아규먼트로 태그이름
+	document.getQuerySelector("CSS 선택자")	
+	document.getQuerySelectorAll("CSS 선택자")	
+
+	
+
+
+
+resizeBy, moveBy -> By가 붙으면 현재크기(위치)로 부터
+resizeTo, moveTo -> 주어진 값으로
+
+
+
+이벤트핸들러 내부의 document.write는 렌더링 된 것을 x -> 사용 자제
+----------- 이벤트 발생 시 수행되는 것.
+load 이벤트 : 페이지 렌더링이 끝나면 발생
+
+innerText -> deprecated 됨.
+
+textContent와 innerHTML : 꺼낼 때는 차이없지만, 넣을 때 차이남.
+
+
+자바스크립트에서는 "-" 기호 쓰면 에러 -> background-color ~> backgroundColor <규칙>
+
+textContent는 렌더링시 html태그도 일반문자처럼 인식
+읽어올때는 차이없고, 설정시 차이남. -> html태그를 인식시키려면 innerHTML 사용.
+
+
+
+@ [ 이벤트 핸들러 구현 ]
+  이벤트 : 웹 페이지 상에서 발생되는 일
+	   (1) 브라우저에서 자동으로 발생 (load 이벤트)
+	   (2) 사용자의 액션에 의해서 발생 
+		(click, mouseover, mouseenter, mouseout, keyin, keypress, keyout, scroll, change, submit, reset..)
+  타겟 : 이벤트가 발생된 대상 객체
+  이벤트 핸들러(리스너) : 이벤트가 발생했을 때 수행되는 코드를 담고 있는 함수(객체)
+  이벤트 모델 : 특정한 타겟에서 정해진 이벤트가 발생했을 때 핸들러가 수행되도록 
+		구현하는 방법
+  		(1) 인라인 이벤트 모델 (지역) - 태그마다 구현
+		(2) 고전 이벤트 모델 (전역)
+		(3) 표준 이벤트 모델 (전역)
+ 
+
+ 	(1) 인라인 이벤트 모델 (지역) 
+	    태그의 속성으로 등록
+	    on으로 시작 (onclick, onmouseover, onload, ..)
+	    onXXX = "코드" // onclick onClick(권장) onCLICK 모두 가능.
+	    onClick = "수행문장1; 수행문장2; 수행문장3" // 가능
+		해제하는 공식적인 방법 없음.
+		
+	(2) 고전 이벤트 모델 (전역)
+	    - DOM 객체를 찾는다.
+		DOM객체.onxxx = 함수;
+		        ----- 반드시 소문자
+		해제 : DOM객체.onxxx = null;
+
+	(3) 표준 이벤트 모델 (전역)
+	    - DOM 객체를 찾는다.
+		DOM객체.addEventListener("xxx", 함수) 호출
+					------- on을 제외한 이벤트 이름
+		해제 : DOM객체.removeEventListener("xxx", 함수) 
+		
+
+  고전 이벤트 모델은 한개만 등록가능 / 두 개 이상 등록하면 나중에 등록된 이벤트가 수행
+  표준 이벤트 모델은 등록된 순서대로 다 호출함.
+  고전과 표준은 한번만 수행 -> 한 번 수행 후 이벤트핸들러를 해제 했기 때문.
+
+  태그마다 기본 이벤트 핸들러를 내장하고 있는 태그도 있음. (<a>, <form>)
+
+  이런 태그에 이벤트 핸들러를 다시 등록하면 등록한 이벤트 호출되고 디폴트 이벤트
+  핸들러도 후에 수행된다.
+  
+  기본 이벤트 핸들러를 무시하고 등록한 이벤트 핸들러만 수행하고 싶을 경우 인라인과 
+  고전의 경우 return false; 추가해주면 된다. 표준의 경우는 정식 메서드 e.preventDefault()
+  를 추가해주면 된다.
+  --> 일반적으로 submit 버튼 시 주로 사용 (잘못된 입력 처리)
+
+
+----------------------------------------------------
+오전 9:26 2019-06-04
+
+$ 이벤트 버블링
+  currentTarget / this : 전달받은 부모 이벤트 핸들러?
+
+# 이벤트 버블링 중단 -> e.stopPropagation(); / 위치 상관없음.
+  고전 이벤트 모델 중단 -> return false;
+  인라인 이벤트 모델은 이벤트 버블링 해제하는 법 가지고있지 않음.
+
+
+# 모든 돔 객체는 getAttribute setAttribute removeAttribute 등을 가지고 있다.
+
+
+# 공간은 유지하고 보여지는 것만 보였다 안 보이게 하고 싶을 때 css 속성의 visibility 속성 사용
+
+
+
+
+------------------------------------------------------
+오전 9:30 2019-06-05
+
+스토리지에 보관한 데이터는 보관한 사이트만 읽을 수 있다. origin
+
+
+
+
+
+
+  대부분 : dom.textContent
+  <form> 태그의 서브 태그들의 값을 getter/setter : dom.value
+
+# 드래그가 가능한 대상(소스 객체) : dragstart dragend drag
+  드롭이 가능한 영역(타겟 객체) : dragenter dragleave dragover drop
+  - 최소 dragstart와 drop은 설정해야함.
+
+  - dragover와 drop 의 기본이벤트핸들러를 해제 시켜줘야 drop 객체의 기능을 가짐.
+
+
+# js가 외부에 있을 땐 캐쉬비우는 새로고침을 할 것.
+
+
+
+
+===========================================================================
+오전 11:41 2019-06-10
+GML (IBM : 출판문서 작성 용도)
+--> SGML(표준 : 출판뿐만 아니라 규격 문서를 작성하는 범용 용도)
+     --> HTML(웹 페이지 제작용) - 태그가 정해져 있음
+     --> XML(다목적..., 규격화된 문서 작성용) - 직접 태그 정의 	  
+		- 반드시 종료 태그 명시
+		  <태그명> ... </태그명>
+		  <태그명/>
+		  <태그명 속성명="속성값"> // ""
+
+
+
+
+
+
+
+readyState = 4 -> 서버로부터 응답이 다 온 것.
+status = 200 -> 서버로부터 응답이 성공적.
+
+textnode : 엔터노드
+
+
+
+============================================
+오전 9:36 2019-06-11
+
+@ [ HTTP 요청 방식(웹 클라이언트가 웹 서버에게 요청하는 방식) ]
+  GET 방식 : http://localhost:8000/edu/first.jsp
+	     http://localhost:8000/edu/first.jsp?page=1&id=1000
+ 						 --------------- 
+						   Query 문자열
+      - 단점 : 	(1) 전달되는 Query 문자열이 외부에 보여진다.
+		(2) 전달되는 Query 문자열의 길이에 제한이 있다. (128byte, 256byte, 1024byte ...서버마다 다름)
+      -	사용 :	직접 URL 입력해서, <a>, location.href, <form>태그의 method 속성값이 "GET" 일 때, ajax 요청 시 GET 지정
+
+  POST 방식 :  	GET방식의 단점을 보완
+		요청하면서 서버에 전달할 name과 value로 구성된 데이터를 요청 바디에 담아서 전달한다.
+		Query 문자열이 외부에 보여지지 않는다. 길이에 제한이 없다.
+      - 사용 : 	<form>태그의 method 속성값이 "POST" 일 때, ajax 요청시 POST 지정
+
+@ [ Query 문자열 인코딩 규칙 ] (W3C가 정함)
+	(1) 영문자, 숫자 그리고 일부 특수문자를 제외한 문자들은 % 기호와 함께 
+	    16진수 코드값으로 변환되어 전달
+	(2) 공백은 '+' 기호(%20)로 변환 
+	(3) name과 value로 구성되어야 하며, 여러개 전달될 때는 '&' 기호로
+	    연결한다.
+
+blob : binary large object 
+src 속성은 이미지의 url만 가능 / blob에는 실제 이미지 내용이 들어가 있음.(text형식 = url 문자열)
+따라서 src 속성에 blob을 직접 지정할 수 없음 -> 가상 url 만들어줘야함 : URL.createObjectURL(blob)
+innerHTML 대신 appendChild ?
+revokeObjectURL : 가짜 URL 생성시? 내부 버퍼 해제 (자원 낭비 방지)
+
+
+<textarea> 의 readonly 속성 : 읽기만 가능.
+
+
+@@ JQuery
+
+  $(아규먼트).xxx()
+  $.xxx() -> jQuery. 이 있는 것
+  
+
+# each() : 두 가지 모두 가능 
+  var ary = [10, 20, 30, 40, 50];
+  $(ary).each(function(index, data) {
+	:
+  });
+
+  &.each(ary, function(index, data) }
+	: 
+  });
+  -> 둘 다 가능.
+
+# $(아규먼트)
+  $(자바스크립트객체) 	
+  $("CSS선택자문자열")
+  $("CSS선택자문자열", DOM객체) -> DOM 객체의 자손 중에서 찾음. (라이브러리에서는 context로 소개됨)
+  $("HTML태그문자열")
+  $(함수) == "window.onload = 함수" == "$(document).ready(함수)"
+
+  아규먼트로 줄 수 있는 것 : 자바스크립트객체, CSS선택자문자열,  
+
+  $(...).val()
+  val() : getter로 동작
+  val(아규먼트) : setter로 동작
+  -> 아규먼트로 함수도 전달 가능 : 함수 전달 시 함수를 수행시키고 그 결과값으로 세팅.
+
+  html() : getter  -> innerHTML역할
+  html(아규먼트) : setter
+       값, 함수
+
+  css("속성명") : getter
+  css("속성명", "속성값") : setter
+  css("속성명", 함수) : 속성값을 함수의 리턴값으로 설정. : setter
+  css({"속성명", "속성값" ... }) : setter
+
+
+ 
+  val 등 대부분의 메서드? (매개변수 ) -> 첫번째 매개변수는 인덱스 + 두번쨰 매개변수 설정해주면 
+ 		원래 갖고있는 밸류값
+
+  제이쿼리 객체가 리턴 되므로 체이닝 가능
+
+  .end() : 전 단계 필터링으로 옮김.
+
+
+  addClass() : 클래스 속성 추가
+  removeClass() : 클래스 속성 삭제
+
+  attr() : 태그의 일반 속성을 추가하거나 변경하는 기능
+  attr("속성명") : getter
+  attr("속성명", "속성값") : setter
+  attr("속성명", 함수) : 속성값을 함수의 리턴값으로 설정. : setter
+  attr({"속성명", "속성값" ... }) : setter
+  -> css메서드와 매개변수 기능 동일 / css는 style만 가능
+
+@@@@@@  setter는 all    @@@@@@@@@@@
+@@@@@@ 	getter는 하나만 @@@@@@@@@@@ -> .each() 메서드 
+
+  속성값으로 함수도 가능.
+
+
+  text() : getter => textContent역할 -------------> 모든 컨텐트를 하나로 결합하여줌.
+  text(아규먼트) : setter
+
+  on 메서드 : addEvenetListener와 비슷
+  click 메서드 : 클릭 전용 이벤트 등록
+
+  first() : 첫 번째 것
+  부모를 remove() 하면 자손들도 다 날라감.
+
+  .remove()
+  .empty() 
+   -> 화면에 보여지는 것은 갖지만, div가 남는 것 다름.
+
+   .append('자식') 
+   .appendTo('부모')
+
+   .append($('h1')) : h1을 찾아서 부모 밑에 추가
+   .append($('h1').clone()) : clone을 하고 붙여넣음.
+
+
+   .clone(true) : dom 객체를 복사하면서 등록된 핸들러도 복제
+                  false의 경우 핸들러는 복제하지 않음.
+
+
+  (1) 이벤트이름(함수)
+  (2) on("이벤트이름", 함수) 	// bind() 등등 -> on으로 통일
+      off() : 이벤트 핸들러 해제  + 모두 해제함.
+      -> "이벤트이름" : 객체로도 전달가능.
+
+  이벤트 핸들러 여러 개 있으면 등록된 순서대로 호출해줌.
+
+  (3) .one("이벤트이름", 함수) : 무조건 한번만 호출하는 핸들러 
+
+ 
+  $('div').click(function () {
+                // 변수를 선언합니다.
+                var header = $('h1', this).text();
+
+		// -> this의 자손에서만 찾음. 여기서 this는 div
+			this가 없으면 전체에서 찾음.
+                var paragraph = $('p', this).text();
+                // 출력합니다.
+                alert(header + '\n' + paragraph);
+            });
+     
+  trigger('click') : 강제로 click 이벤트 발생시킴.
+
+  이벤트 핸들러가 등록되는 시점의 돔 객체만 등록됨
+  앞으로도 추가될 태그에도 등록하려면 두번째 아규먼트로 태그명을 준다. 도규먼트객체에 등록하면서
+  ->  $(document).on('click', 'h1', function () {
+
+
+  일반태그의 컨텐트 : html(), text()
+  <form> 태그의 서브 태그들 : val()
+  <form> 태그의 서브 태그 중 <textarea> : html(), text(), val()
+  
+  select, check 등등 -> change 이벤트 발생함.
+  체크상태와 해제 상태 ----> prop메서드 !!
+  -> $('div>input[type=checkbox]').prop('checked', true);
+
+  라벨 -> 웹 접근성 높임
+  <input type="checkbox"/>
+  <label>A Option</label> 
+  
+  ->   <label><input type="checkbox"/>
+	  A Option</label> 
+
+
+
+===============================================
+오전 9:24 2019-06-14
+[서블릿 프로그래밍 정리]
+(1) HttpServlet 클래스를 상속
+    Tomcat(Web Server 기능 + Application Server 기능 : WAS)
+    	     코요테              카탈리나
+  객체 생성 후   init() -> service() :
+ 
+@ GET 방식 지원하는 서블릿 : doGet()
+  POST 방식 지원하는 서블릿 : doPost()
+  둘 다 : doGet(), doPost() 모두 오버라이딩 or service() 오버라이딩
+  
+@ HttpServletRequest : 요청 정보를 추출하고자 할때 (쿼리 문자열) 
+  HttpServletResponse : 응답과 관련하여 
+			응답스트림객체 생성, 컨텐트 타입 설정
+
+  쿼리 문자열 : 클라이언트가 서버로 보낼 때 ?
+
+(2) 서블릿의 수행상의 특징
+    - 서블릿은 한 번 메모리 할당(객체 생성)되면 할당된 상태를 계속 유지한다.
+    - 여러 클라이언트 요청에 대해서 하나의 서블릿 객체를 공유해서 수행한다.
+    - 각 시점마다 호출되는 메서드가 정해져 있다.
+	객체 생성후 -> init() (한번만 호출)
+	요청이 올 때마다 -> service()      ~~> doGet()이나 doPost()가 호출될 것을 의미
+	객체 해제 전 -> destroy()
+
+(3) 쿼리 문자열 추출 방법
+  name=value&name=value&name=value ... 형식 (w3c가 정한 형식)
+  
+  HttpServletRequest 객체의 getParameter() 
+
+  String getParameter(String) => 매개변수 : 추출하고자 하는 쿼리 문자열의 이름 
+				 리턴값 : 밸류값, 밸류가 없을 시 null리턴 또는 ""
+
+  String[] getParameterValues(String) => 여러 개의 밸류를 리턴가능 (0개, 1개, 여러개 가능)
+					value 값들의 배열 또는 null
+  
+  체크박스의 경우 체크하지 않으면 null이 전달됨.
+
+  GET 방식의 경우에는 Query 문자열 추출시 한글이 깨지지 않는다.
+  POST 방식은 깨짐 : 추출하기 전에 request.SetCharacterEncoding("UTF-8") 을 호출한 후에 추출
+
+
+  service() 메서드를 오버라이딩 ==> get post를 한번에 하겠다. (자주 사용하지 않음)
+
+  input 태그의 디폴트 type은 text형식.
+  form 태그는 블럭 태그 / form 태그를 구성하는 태그들은 인라인 태그.
+  checkbox 타입의 input 태그에 value 값을 주지 않으면 on? 이 리턴
+  input 태그에 required 속성을 추가하여 반드시 입력하게
+
+
+  query?stname=&stnum=
+  -> stname은 null이 아닌 null문자열이다.
+  이름조차 안왔으면 null 이름은 왔지만 비어있으면 null문자열
+
+  
+
+# getRequestURI() 
+  getRequestURL() 
+  getParameter(name)
+  getParamaterValues(name)  
+  sendRedirect()
+
+  getPart() : 파일업로드
+  getQueryString() :쿼리문 전체 추출 (비추천)
+  
+
+  select 태그에 multiple 속성 -> 여러개 선택 가능
+  size 속성 : 동시에 보여주는 항목 갯수 / 설정 디폴트는 1
+
+  사용자 입력과 관계없이 무조건 전송하고 싶을 때
+  -> <input type="hidden" name="s" value="..."> // 입력 컴포넌트 생기지 않음.
+
+
+  <textarea name="asdf" rows="4" cols"3">
+  
+  한개만 선택 : <radio> <option>
+  radio 버튼은 name 속성이 같아야 같은 그룹이 된다.
+  checkbox도 동일 (name 속성 같게)
+
+
+@ request.getHeader("referer") :  이번 요청을 하게한 클라이언트의 URL  @@@@@@@@@@@@@@@@@@@@
+
+
+@ 요청재지정 : 클라이언트가 a를 요청했을 때 b가 대신 응답하는 것.
+  - 1. forward 방법 : 다른 웹사이트 불가능함. 동일한 서버의 동일한 프로젝트 안의 자원만 가능. 
+  - 2. redirect 방법 : 클라이언트가 알게됨. (302라는 응답코드와 함께 클라이언트에게 url을 부여)
+			제한 없음. 누구든 가능.
+
+  -> 포워드 로는 동일 서버 내 아니면 안됨.
+
+
+
+==========================================================
+오전 9:28 2019-06-17
+ 
+  edu, sedu 을 지칭하는 말.
+  -> Dynamic Web Project : 이클립스가 지칭한 것. 다른 ide 사용시 이름 다름.
+  -> Context : 웹 프로젝트가 WAS(톰캣)의 입장에서는 Context
+  	톰캣에 edu와 sedu 두 개의 컨텍스트가 등록되어있다.
+  -> Web Application : 개발자 입장.
+
+  servers -> Tomcat~ 우클릭 -> Add and Remove : 등록되어있는 프로젝트
+  
+  projectexplorer -> Servers-> Tomcat~ -> server.xml
+	맨 밑 ~> Context 태그 추가된 것 확인.
+
+  이미지 : byteStream 사용
+  ServletOutputStream sos = response.getOutputStream(); // 이미지, 오디오, 비디오 등
+ 
+  -> 서블릿의 응답으로 html, xml, json ,image 등 가능함.  
+
+
+
+@ [ 세션 : HttpSession 객체 ] 
+  HttpSession 객체는 요청을 보내온 클라이언트 단위로 객체가 한 개만 생성되는 
+  객체로서 한 번 생성되면 해당 클라이언트가 종료될 대까지 객체가 유지된다.
+  클라이언트별로 어떤 정보를 원하는 시각까지 유지하고 싶을 때 사용
+  
+  - Scope : 메모리에 저장장소가 만들어진 후 언제까지 유지되는가 
+    4가지 스코프
+	(1) page scope : 요청된 서버 프로그램이 수행하는 동안 - ex> 지역변수
+	(2) request scope : 요청된 서버 프로그램이 수행하고 응답하기 전까지 - 
+			    HttpServletRequest 객체에 저장된 객체
+	(3) session scope : 세션이 유지되는 동안 -
+			    HttpSession 객체에 저장된 객체
+	(4) application scope : 서버가 기동되고 나서 종료될 때 까지
+				멤버변수, ServletContext 객체에 저장된 객체 
+
+  - 서블릿의 지역변수 : 수행하는 동안, 클라이언트 별로 각각 메모리 할당
+  - 서블릿의 멤버변수 : 서버가 종료될 때까지 메모리 영역을 할당.
+			모든 클라이언트에 의해 공유
+
+  클라이언트 별로 개별적으로 저장, 원할 때까지 유지도하고 싶을 때 -> HttpSession 객체에 보관
+	  ex> 쇼핑카트, 로그인
+
+  HttpSession은 인터페이스 -> 팩토리 메서드 사용
+  -> HttpSession session = request.getSession();
+  session.setAttribute("data", new int[1]); // data라는 이름으로 객체 저장
+                               ---------- 객체라면 뭐든 저장 가능
+
+  HttpSession 객체는 언제까지 유지되는가?
+  (1) 브라우저가 기동되어 있는 동안
+  (2) invalidate() 메서드가 호출되기 전까지
+  (3) inactive interval 시간이 적용되기 전까지 - 30분(디폴트)
+
+  생성된 세션객체의 ID : session.getId()
+  세션 객체가 생성된 시간 : session.getCreationTime() 
+
+  쿠키 : 서버가 브라우저에 보관하는 데이터
+
+  개발자 도구 - response headers - set-cookie에서 확인
+  -> 브라우저가 살아있는 동안 / 브라우저 종료시 소멸
+  jsessionid를 안가져오면 새로운 클라이언트로 인식.
+
+
+  getSession() == getSession(true)
+  getSession(false) : 만들어 있지 않다면 null을 리턴.
+
+  session.invalidate(); : 강제로 세션 객체 삭제
+
+  - 객체로 만든다. (배열 객체)
+  - 저장 : session.setAttribute("이름", 객체) 로 등록
+  - 삭제 : session.removeAttribute("이름")
+  - 추출 : session.getAttribute("이름")  --> Object형이므로 강제 형변환 필수
+
+
+
+
+
+=========================================================
+오전 9:14 2019-06-18
+
+# HttpSession session = request.getSession();
+  => session 객체를 준비 (없으면 만들고, 있으면 객체 리턴)
+
+# request.getHeader("referer") @@@@@@@@@@@@@@@@@@@@
+  -> 이 서블릿을 요청한 url정보 추출
+
+  request.getRequestURL() 
+  -> 서블릿을 요청할 때 사용한 url 정보
+
+# 쿠키 : 클라이언트 안에 보관 (보안 취약)
+
+  일정기간동안 유지 : 세션
+  계속 유지 : 데이터베이스
+
+@ [ 파일 업로드 ]
+  클라이언트(웹클라이언트 == HTTP클라이언트 = 브라우저)에서 서버(웹서버 == HTTP서버)에게 
+  요청을 보낼 때 name=value로 구성된 쿼리 문자열을 전달할 수 있다. 
+  (영문, 숫자, 일부특수문자는 그대로 전달, 나머지는 인코딩)
+  --> name=value&name=value...
+      application/x-www-form-urlencoded
+
+  파일 업로드 시에는 서버에게 전달하는 데이터에 클라이언트에 존재하는 파일을 첨부해서
+  요청하려는 경우에는 다른 형식으로 전달해야 한다.
+	multipart/form-data
+ 
+  get방식은 전달되는 방식 결정 불가 (무조건 x-www-form-urlencoded 방식임)
+  -> 반드시 post 방식으로 / 각각 input태그가 하나의 파트가 됨.
+  multiple 속성일 경우 5개의 파일 선택 시 5개의 파트로 보내짐.
+
+ -->	@MultipartConfig 추가 (WAS가 대신해줌)
+
+	Collection<Part> parts = request.getParts(); // parts 객체를 보관한 collection 객체를 리턴해줌.(arraylist)
+
+	part.getName(); // name 속성의 값
+	
+	part.getSubmittedFileName(); // 실제 업로드되는 파일이름 (업로드 되는 파일이 아니면 null)
+  	
+	part.getContentType() // 업로드되는 파일의 정보 // 업로드되는 파일이아니면 null // ex>application/pdf
+
+	
+# @MultipartConfig (location = "c:/uploadtest") -> 로케이션 디렉토리에 저장 (반드시 존재해야함)
+
+# <input type="file" name="theFile"  multiple>   (반드시 post 방식만 가능)
+
+# 동기 요청은 이벤트 핸들러 필요없음.
+  
+
+
+@ [ JSP ]
+
+ -> 1. JSP 태그 -> 2. JSP 내장 객체
+
+# 웹 페이지에 시간 정보 출력하는 법
+  (1) JavaScript : 클라이언트 시간
+  (2) JSP + Java : 서버 시간
+
+# 표현식 태그 : <%=     %>
+
+@ [ JSP 태그 ]
+  (1) 스크립트 태그 : 필요한 자바 코드를 정의하는 용도의 태그들
+	<%=      %> // 실제 자바 코드 정의 가능 : 표현식 태그 (내용을 수행하고 출력)
+	<%       %> // 실제 자바 코드 정의 가능 : 수행문 태그 (수행만 하고 출력x) (여기서 선언 시 지역변수가 됨)
+	<%!      %> // 실제 자바 코드 정의 가능 : 선언문 태그 (멤버변수 선언, 메서드 정의)
+	<%@      %> // 영향을 주는 기능. : 	  지시자 태그
+	<%--   --%> // 주석 (HTML 주석 : <!-- -->, 자바주석 : //, /* */ )
+  (2) 액션 태그
+	<jsp:useBean .... />
+	<jsp:forward .... />
+	<jsp:include .... /> 	
+	<jsp:setProperty ... />
+	<jsp:getProperty ... />
+  (3) 커스텀 태그
+	필요에 의해 개발자가 직접 태그를 만들어서 사용해라.
+	JSTL 	
+
+
+  속성 값 할당시 인용부호
+  종료태그 없을 때 />
+
+  <%= request.getParameter("stname") %>은 out.print(request.getParameter("stname"))으로 바뀜
+  -> 따라서 세미콜론 포함 X.
+
+  out.print(식)
+
+  jsp는 기본적으로 get 과 post 구분하지 않음 (구분하고 싶으면 직접 구현)
+  jsp 는 수행될 때 서블릿으로 바뀌어짐.
+
+# POST 방식일때 한글 깨지는 현상
+  -> if (request.getMethod().equals("POST"))
+	request.setCharacterEncoding("UTF-8");
+
+  jsp 작성 시 한줄 이여도 블럭 지정할 것
+
+  out 이라는 내장 객체 통해 표현식 태그를 사용하지 않고 출력 가능.
+
+
+
+## form 태그는 action 속성이 없으면 자기 자신을 다시 호출한다.
+
+## jsp에도 자바스크립트 코드 작성 가능
+
+
+
+
+=========================================
+오전 9:43 2019-06-19
+
+  1> 쿠키 사용 : 
+
+  2> HttpSession : 서버에 저장
+
+# 페이지 지시자는 어떤 위치에 있어도 제일 먼저 읽는다.
+  -> 자바 코드를 직접 넣을 수는 없지만 지시하는 태그
+  속성 : import, session , errorPage, contentType, isErrorPage, pageEncoding 등등 (주요속성들)
+   ex> 	import="java.util.ArrayList, java.io.File"
+    	import="java.util.*, java.io.File"
+	session="true" 가 기본값이므로 세션값이 무조건 준비되어있음. 해제하려면	session=false
+ 	buffer="8kb" : 한 번에 보내지는 단위를 8kb로 정함 (꽉차면 자동으로 flush됨 = 상대방에게 내보냄)    
+	autoFlush : 자동 플러쉬 
+	contentType : 기본값이 charset=ISO-8859-1 이므로 한글 깨짐.
+
+  exception도 내장객체 -> 디폴트로는 사용불가 
+  -> 에러페이지 전용 : 에러페이지 전용인지 확인은 <%@ page isErrorPage="true" %> 인 것을 확인
+  
+  relativeURL : 동일한 웹 어플리케이션에 있는 대상만 지정가능.
+
+
+  include 지시자 태그
+  <%@ include file="sub1.jspf" %> : 확장자 .jspf 권장 (.txt도 가능 - 권장x)
+
+  서브 태그가 없어서 종료태그를 생략할 시에는 시작태그 끝에 / 추가
+
+
+# include 지시자태그 :  <%@  include  file="part1.jspf" %>
+	-> 서블릿 소스의 갯수 : 1개 -> 포함을 시켜서 같이 서블릿으로 바꿈.
+  include 액션태그 :   <jsp:include page="greeting.jsp">
+	-> 서블릿 소스의 갯수 : 2개 -> 각각 개별적으로 수행
+
+--> 지시자는 해당 위치에 그대로 복사되어 서블릿으로 바뀜. 
+    --> 같은 파일 일시 똑같은 변수명으로 충돌날 가능성 체크
+
+# page : this 와 같은 기능 (자기자신 가리키는 객체)
+
+  <%@ page session="false" %> 
+  -> session 객체 사용 안할 것.
+
+# <input type="image" src="..." > : 가능 (submit 기능 내장)
+
+requestDispatcher.forward() /////
+
+
+
+@ 서블릿 -> JSP 에 데이터 전달하는 방법
+  (1) HttpServletRequest 객체에 저장하여 전달하는 방법 - request scope (요청이 끝날때 까지) ---> 가장 많이 사용
+  (2) HttpSession 객체에 저장하여 전달하는 방법 - session scope (session이 살아있는 동안)
+  (3) ServletContext 객체에 저장하여 전달하는 방법 - application scope (server가 살아있는 동안)
+
+  --> 세 가지 모두 공통적으로 setAttribute(이름, 객체) // 반드시 객체
+			      getAttribute(이름)
+			      removeAttribute(이름)
+
+# 배열, 문자열
+
+  보내야할 데이터가 여러가지일 때
+  이름, 번호, 나이, 주소 --> VO(Value Object), DTO(Data Transfer Object) 클래스
+ 
+  class MyDataVO { // or MyDataDTO
+	String name;
+	int number;
+	int age;
+	String address;
+  } 
+
+
+
+
+  input 전화번호 양식 : patter="(010)-\d{4}-\d{4}"
+
+
+  form 태그 안의 button은 자동으로 submit 속성 가짐.
+
+
+
+
+-------------------------------------
+오전 10:52 2019-06-21
+
+<jsp:useBean id="member" class="model.vo.MemberVO" scope="request"/>
+ -> 액션 태그 : 객체를 꺼내주는 태그 (request 영역에서 ==> HttpSetvletRequest)
+
+jsp에서 사용되는 자바객체 == bean
+useBean : class="model.vo.MemberVO"에 해당하는 모델이 있으면 꺼내고 없으면 생성
+id="member" => 객체를 꺼내서 담는 변수명으로 사용.
+
+
+ <jsp:getProperty property="name" name="member"/>
+  -> 찾아온 객체의 getter 메서드를 호출하여 리턴값을 받음.
+	name : 객체의 이름
+	property : get을 빼고 첫글자 소문자
+
+
+@ EL : jsp2.0부터
+  - 주로 표현식 태그 대신함 (설정기능 없음, 표현기능만)
+  ${ requestScope.member.name }
+     requestScope.추출할객체이름.호출할getter메서드명
+     sessionScope. ...
+
+	scope 생략할 경우 : page -> request -> session -> applie
+	순으로 찾아서 
+    EL 내장객체 : param
+	param.속성명
+
+  jsp는 표현에 특화
+	
+
+  ${ header.user-agent } -> error // 자바식별자에 '-' 불가
+  ->> $ {header["user-agent"] } -> O
+
+  pageContext를 제외하고 모두 참조하는 것은 해쉬맵 객제치ㅇ다.
+  
+
+  \ : 일반문자열화
+  문자열 결합 시 사용하는 += 연산자
+
+  empty param.message
+
+
+  EL 변수 : 주어진 변수명으로 보관되어 있는 객체
+  $ { num }
+
+  pageContext : 유일하게 jsp의 내장객체이면서 el의 내장객체
+
+  표현식에서 변수는 자바변수이고, ${}에서의 변수는    
+
+
+  jsp에서 action태그로 접근할 수 있는 규격화된 ~ : bean
+
+  => 반드시 아규먼트 없는 생성자를 가지고 있어야 함.
+
+
+@ JUnit : 단위테스트 
+  
+  - 주로 dao에 단위테스트 구현
+
+
+
+@@ ojdbc6.jar @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@  C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib              @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+@ 방명록 기능의 웹프로그램
+  (1) VisitorVO.java 생성
+  (2) VisitorDAO.java 생성
+------------------------------ JUnit 테스트
+  (3) HTML은 이전 실습에서 만든 것 복사 수정
+  (4) VisitorServlet.java 복사 수정
+  (5) visitorView.jsp 생성
+
+
+
+=============================================================
+오전 9:45 2019-06-24
+
+@ request.getHeader("referer") : 이번 요청을 보내온 클라이언트 웹 페이지의 URL을 추출해 준다.
+  -> visitorForm.html ----> /visitor라는 매핑명을 요청 --> /jspexam/visitorView.jsp로 포워드
+				--> forward관계이기 때문에 한 몸으로 취급, ==> servlet이든 jsp든 하나로 취급됨.
+  == <a href='${header.referer}'>  </a>
+
+
+@ 테이블에 id 컬럼 추가
+  alter table visitor add id number(4);
+ 
+  시퀸스 추가
+  create sequence visitor_seq
+  start with 1
+  increment by 1;
+
+  update visitor set id=visitor_seq.nextval;
+
+@ form 태그 method="POST" 하지 않는 이상 대부분 GET방식
+
+"INSERT INTO MEETING VALUES (MEETING_SEQ.nextval, ?, ?, "
+	+ " 'TO_DATE(?, 'yyyy-mm-dd\"T\"hh:mi'))");
+
+
+@ 수정 기능 
+   1. 미팅 정보 수정 버튼(이미지)이 클릭되었을 때 -- GET 방식
+	-> 미팅 정보를 수정하기위한 입력 폼화면 출력 
+   2. 미팅 정보 수정 폼에서 '수정하기' 버튼이 클릭되었을 때 - POST방식 (hidden타입 필수)
+	-> 새로이 입력된 내용을 서버에 전송하여 실제 DB 수정이 이루어짐.
+
+
+
+
+
+==========================================================
+오전 9:19 2019-06-26
+
+@ JSTL : JSP Standard Tag Library
+	-> 아파치 오픈 그룹이 만든 JSP의 커스텀 태그 모음
+     5개의 그룹 : core 라이브러리
+		  format(국제화) 라이브러리(i18n 라이브러리)
+		  sql 라이브러리
+		  xml 라이브러리
+		  함수 라이브러리
+ 
+  <%@ taglib prefix="c" uri="http://java.sum.com~~" %>
+  prefix가 c이므로
+  <c:xxx >
+
+  <%     %> : 자바코드포함 태그
+  <jsp:xxx> --> JSP의 표준태그
+  <다른prefix:xxx> ---> JSP의 커스텀태그 (절대로 jsp로 시작하지 말 것) : taglib 지시자 태그에 prefix 설정함.
+	<c:xxx > : 코어 라이브러리 의미
+	<sql:xxx> : sql 라이브러리 (관례적)
+	<fmt:xxx> : format library
+	<x:xxx> :    
+
+
+
+ <c:set > : setAttribute와 비슷
+ <c:remove > :  remove
+  ${ a }
+
+@ <c:import> @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  어떤 웹사이트든 끌어올수있음
+  
+choose : 다중 if
+when : else if
+
+# 특정태그위치 찾는법
+	- css selector : 주로 html과 사용
+	- Xpath : 주로 xml과 사용
+		=> 어느것 사용하든 상관 없음.
+
+# 엔터문자도 dom객체 생성됨.
+  속성은 자식이 아님.
+  
+Xpath 식에서 @는 속성명으로 인식
+text()메서드 호출 -> 컨텐트 내용 꺼냄.
+
+
+  #예
+css selector : #mw-content-text > div > h2:nth-child(12) > span.mw-editsection > a
+xpath : //*[@id="mw-content-text"]/div/h2[2]/span[3]/a
+
+// : 자손
+/ : 자식
+
+  section/article/h1/div/span/a
+  section//a
+
+
+
+
+
+===============================================
+오전 9:49 2019-06-27
+ 
+@ [Spring FW]
+  소스 코드의 코딩량을 줄여주고 유지보수성이 좋은 프로그램을 개발
+  웹 서버 프로그래밍 -  Spring MVC 
+			Spring IoC(Spring DI) 모드 기반
+  Eclipse EE (Enterprise Edition) = 
+	Eclipse for Java Developer + WTP(웹 툴 패키지)포함 된 것 + STS 추가설치
+
+  (1) Spring IoC (Inversion of Control) ~ 대신해줌?
+	Springioc 라는 java project 생성 -> 프로젝트 우클릭 configure-> convert to maven project 클릭
+	- springioc를 maven project로 변환
+	- pom.xml을 수정해서 이프로젝에서 의존하는 추가라이브러리에 대한 정보를 작성한다.
+	  (사용자 - student = .m2(메이븐이 관리하는 폴더)
+
+
+  (2) Spring MVC
+ 
+  (3) MyBatis
+
+
+[추가 라이브러리 준비하는 방법]
+  (1) 해당 라이브러리 압축파일(xxx.jar)을 사이트에서 다운로드하여 
+      정해진 디렉토리에 저장하거나 패스 설정을 한다.
+  (2) 추가로 설치하려는 라이브러리들을 관리해주는 툴(빌드 툴)
+	- 메이븐,    그래들 ...
+	  (pom.xml)  
+dependency DL : 객체를 달라할때 줌
+	   DI : xml문서에 작성하면 그대로 객체를 넣어줌 
+
+ applicationContext : spring container 역할
+ 
+  아규먼트를 받는 생성자를 생성하고 싶으면 beans.xml에
+   #	<constructor-arg>
+		<value>strawberry</value>
+	</constructor-arg>	 추가.
+
+   #	<property name="cost">
+			<value>3000</value>
+	</property>
+	===> setCost()가 호출됨
+
+# 스프링 컨테이너가 관리하는 객체는 기본적으로 싱글톤 패턴.
+
+# scope="prototype" : 그때그때 객체생성하여줌.
+
+# <constructor-arg  value="ABC"/>
+  <constructor-arg  value="100"/>
+ 
+  <constructor-arg index="1"  type="int"  value="50"/>
+  <constructor-arg index="0"  type="java.lang.String" value="xyz"/>
+
+  => type 속성을 통해 직접 타입지정가능 / index 속성을 통해 순서 변경가능
+
+# ref속성
+  <constructor-arg ref="bar" />
+  => 아규먼트로 다른 객체 전달 (bar라는 객체)
+
+# factory-method 속성
+  <bean id="test" class="sample4.AbstractTest" 
+                          factory-method="getInstance"/>
+
+# prefix 사용하여 set 메서드 사용
+  <bean id="lee" class="sample5.DateVo" 
+	p:name="Dooly"  p:birth="2000-12-12"/>
+       => <property name="name" value="Duke"/>와 동일
+  xmlns:p="http://www.springframework.org/schema/p" 선언이 있어야함.
+
+
+@ xmlns:c="http://www.springframework.org/schema/c : constructor-arg 서브태그를 대신함
+  
+
+  xmlns:c="http://www.springframework.org/schema/p : property 서브태그를 대신함
+
+# xml 파일 만들기
+  new - other - spring - Spring Bean Configuration File
+
+
+# prefix c 사용시 매개변수 이름 모를 때
+  c:_0-ref="emp1"  c:_1="Development 1 Team"
+  
+
+
+========================================================
+오전 9:42 2019-06-28
+
+# 프레임워크(framework) - 2004~2006
+  - 스마트 라이브러리
+    라이브러리 + 디스크립터 파일(XML)
+  - EJB (1998), Servlet, Struts, iBatis(MyBatis), Spring, @@ Spring MVC @@ 
+    Java + XML
+
+DL : dependency lookup
+DI : Dependency injection (주로)
+
+주로 autowired (스프링 전용이므로)
+
+
+
+Metadata : xml 혹은 annotation으로 작성함.
+
+autowired="byType"  : setter메서드 사용   (setter메서드는 매개변수 반드시 1개)
+(1) 타입으로 찾아서 1개이면 해당 객체 주입
+(2) 타입으로 찾아서 2개 이상이면 NoUniqueBeanDefinitionException 발생
+(3) 없으면 null 주입
+
+autowired="byName"  : setter 메서드 사용
+(1) 프로퍼티명과 동일한 명칭의 빈을 찾아서 해당 객체 주입
+(2) 없으면 null 주입
+
+autowired="constructor"  :  constructor 사용
+(1) 타입으로 찾아서 1개이면 해당 객체 주입
+(2) 타입으로 찾아서 2개 이상이면 매개변수명과 동일한 id 값을 갖는 객체 주입
+(3) 없으면 null 주입
+
+
+
+필드에 설정된 @Autowired
+(1) 타입으로 찾아서 1개이면 해당 객체 주입
+(2) 타입으로 찾아서 2개 이상이면 변수명과 동일한 id 값을 갖는 객체 주입
+(3) 없으면 NoSuchBeanDefinitionException 발생
+     (required = false 속성을 사용하여 없으면 null 이 되게 지정 가능)
+(4) @Qualifier(value="xxx")를 추가로 사용해서 변수명이 아닌 다른 이름 지정 가능
+
+
+필드에 설정된 @Resource
+(1) 변수명과 동일한 id 값을 갖는 빈을 찾아서 해당 객체 주입
+(2) 타입으로 찾아서 1개이면 객체 주입
+(3) 타입으로 찾아서 2개이상 이면 NoUniqueBeanDefinitionException 발생
+(4) 없으면 NoSuchBeanDefinitionException 발생
+
+
+
+setter메서드 호출 하기전에 아규먼트없는 생성자 호출해야하므로 
+
+@ <context:component-scan base-package="sampleanno03"/>
+  -> 컨텍스트 prefix 선언 : xmlns:context="http://www.springframework.org/schema/context"
+  -> smapleanno03 패키지를 스캔하여 annotation이 있나 체크
+ 
+  
+
+- @Component : bean 태그를 대신함
+    @Component -> 이름 : myFoodMgr
+    @Compenent("myFood") -> 이름 : myFood
+
+
+소스를 가지고 있어야 annotation 가능
+localDateTIme 등 불가능
+
+
+
+
+
+@ Spring MVC
+   -> controller는 일반클래스(서블릿x) / view는 jsp로
+     스프링이제공. Front controller
+  
+
+public ModelAndView xxx() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("hello"); // 뷰 이름 설정
+		mav.addObject("msg", getMessage()); // setAttribute와 동일
+		return mav;  // dispatcher servlet이 받음  -> views의 hello.jsp
+	}
+
+# xmlns="http://www.springframework.org/schema/mvc => prefix를 주지 않으면 여기에 속함
+
+
+
+=======================================================================
+오전 10:35 2019-07-02
+
+
+dispatcherServlet 이 모든 요청을 받고 어디로 갈지 정해줌 
+
+
+
+매개변수가 많을 경우 : public ModelAndView proc(QueryVO vo) {
+객체로 전달해도 가능 (3개 넘어가면 많음)
+dispatcherservlet이 직접 만든 클래스 타입이면 Model로 간주하고 매개변수가 갖고있는 매개변수를 처리해줌.
+똑같은 쿼리문자를 vo타입으로 전달해줌.
+이름이 없으면 세터 호출 포기 -> 에러는 안남. (int 는 0, double은 0.0 ...) 
+-> 자동으로 저장됨 (jsp에서 사용가능) / vo객체를 request 객체로도 보관한다.(자동) / vo 이름은 QueryVO -> queryVO
+
+
+request로 직접 추출 : public ModelAndView proc(HttpServletRequest request) {
+cf> reflect API : 클래스 정보를 읽을 수 있음.
+
+@RequestMapping(value="/locale.do")
+public ModelAndView proc(Locale l) {
+-> 쿼리명과 상관없음.
+요청 헤더 중 클라이언트 정보도 포함되어있음.
+--> 지역정보
+
+
+# POJO (Plain Old Java Object)
+  
+
+(@ModelAttribute("kkk") StepVO vo)
+StepVO는 stepVO로 지정되는 데 이름을 바꾸고 싶다면
+
+Spring mvc는 기본적으로 forward
+
+return String 이여도 VO 객체로 받은 전달인자는 전달된다.
+또한 앞 뒤로 	src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+설정값에의해 붙는다.
+
+
+RequestMapping이 정의된 메서드가 controller 메서드
+
+controller 메서드가 호출되기 전에 modelattribute가 붙어잇는 메서드를 한번씩 호출하여 request 객체에 보관
+"v3" 라는 이름으로 (저장 모델어트리부트에 부여된 이름으로) 리턴값을 저장
+
+@ModelAttribute("v4")
+	public Date createDate() {
+		System.out.println("Creating an object automatically 4");		
+		return new Date();
+	}	
+  --> 미리 저장해야하는 것이 있을 때
+ ==> 커맨드 메서드 라고 한다.
+-> session scope 로도 가능 (애노테이션)
+
+
+@SessionAttributes("data1")
+@SessionAttributes({"count1", "count2"}) : 2개 이상 가능
+
+
+
+@RequestMapping(value="/count")
+public void handle(@ModelAttribute("count1")CountVO vo1, 
+      @ModelAttribute("count2")CountVO vo2, int num1, int num2, HttpSession s, HttpServletRequest req) {
+}
+ --> 보이드가 리턴값이면 맵핑명과 같은 뷰를 사용한다. =>  count.jsp 가 응답
+
+
+public void handle(SessionStatus s) {
+	s.setComplete();   => session 전부 삭제 / 선별불가
+
+
+=====================================
+서블릿 시 상속
+쿼리문자열 메소드
+일정기간동안 데이터 보관하고플때 클라이언트별 브라우저별
+httpsession객체가 inactive interval 시간
+get post 오버라이딩 메서드
+쿼리문자열 잘못 왓을때 리턴값
+get 방식 요청시 특징
+파일업로드 어떤 요청 방식
+객체 보관 용도 api (컨테이너 객체) - 3개
+jsp 태그 중 멤버변수 선언 시 사용 태그
+jsp 내장 객체 문제
+쿼리문자열 추출하는 el 식
+session 삭제 메서드
+서블릿 기술 특징
+mvc 패턴
+특정 스코프 -> 3가지 el ~
+mvc 패턴의 장점 - 유지보수성 코딩량 줄지는 않음
+spring ioc  -> 객체 생성을 스프링이 대신해줌
+setter injection / constructor injection 시 bean 에서 사용하는 태그명
+애너테이션 (bean)
+spring mvc에서 프론트 컨트롤러 역할하는  
+controller method 설명 틀린 것
+spring mvc 환경설정 시 maven 의 역할 : 사용하는 환경 설정파일 이름? 디펜더시 설정 하는 파이ㅣㄹ
+jdbc : select 와 insert, delete, update 다른 점
+
+ 
+
+
+
+
+
+
+=============================================================
+오전 10:17 2019-07-03
+
+* @PathVariable : 클라이언트가 원하는 정보를 슬래시로 
+    ex> @RequestMapping(value="/character/detail/{name}/{number}")
+		...   @PathVariable("number") int num ...
+			-> uri path에서 number로 저장된 값을 꺼내온다.
+		...   @PathVariable String name
+			-> 받으려는 매개변수 이름과 전달할 path variable에 의해 추출되는 
+  			   path 이름이 같을경우 생략 가능하다.
+	 name : 문자열
+	 {name} : 동적path -> 무엇이 오든간에 name으로 보관할 것.
+	-> 1, 2 path는 정확히 + 3, 4 는 동적
+  
+  Model 매개변수
+  vo 객체 (= 커맨드 객체)
+  Map, Model, ModelMap 으로 넘겨도 가능.
+  -> addAttribute() 메서드 활용
+
+
+cf> 스프링에서는 많아진 ajax 요청에 대해 controller가 직접 응답하게 하는 annotation을 만들었음.
+	= @responseBody
+	
+cf> 데이터를 어디에서든 가져오기만 해도 DAO 다. (데이터베이스 , 파일 ,..._
+
+- @Component 
+	// 역할에 따라 애노테이션 확장 
+	// 스프링에 의해 관리된다는 사실은 같음.
+	@Controller => 스프링 컨테이너가 객체 생성해줌
+			다만 controller는 일반 객체가 아니라 controller로써의 객체
+	@Service -> 스프링 컨테이너에 의해 관리되는 자바 객체
+		 	역할은 서비스
+	@Repository : 저장소와 관련됨. (스프링에 의해 관리됨). 데이터 처리 객체로 취급
+
+cf> 전체적으로 전부 autowiring 하거나 전부 직접 생성해야 객체에 정상적으로 접근할 수 있다.
+     autowire와 직접생성하는 것 혼용하지 말 것.
+
+서버 기동 - dispatcher - 객체 생성 (singleton) 
+
+
+
+- @RestController : @Controller + @ResponseBody
+   : 컨트롤러가 직접 클라이언트에게 응답함 (뷰를 거치지 않음)
+    ex> @RequestMapping(value="/canvasupload",
+			 produces="text/plain; charset=utf-8")	
+	produces : 응답형식 반드시
+
+   produces = "application/json;"
+   vo객체를 리턴하면 json 형식으로 브라우저에 출력됨
+   -> pom.xml에서 jackson-databind 라이브러리 디펜던시를 추가해줫기 때문
+                   -> 자바(vo)객체를 지정된 형식으로 변환해주는 역할
+
+   xml일 때 어떤 클래스가 루트인지 해당 vo 객체에 @XmlRootElement 선언되야함.
+
+
+
+------------------------------------------------------------------------
+오전 9:36 2019-07-04
+
+* 오류처리
+  - @ExceptionHandler : 메서드에 정의 / 예외 발생시 이 메서드를 호출해라.
+  - @ControllerAdvice : 도우미 객체
+
+
+
+@@@@ mybatis : jdbc 프로그래밍 도와주기 위해
+	    -> jdbc 불편한점 : 예외처리, resultset 처리(반복문) 등 
+	       -> 간단하게 구현 도와줌.
+
+  수행할 sql명령을 설정파일(sql mapper)에. (sql 명령을 분리시킴)
+
+* sql mapper : 수행할 sql 명령을 담은 설정파일
+
+
+resultType : select 한 결과를 행 단위로 vo객체에 담아서 list로 리턴해줌.(항상)
+parameterType : 
+1개만 추출 : selectOne
+여러개 추출 : selectList
+
+list 타입 명시안할 시 에러
+
+#{key} : 동적 parameter 
+#{} : ? 역할
+
+
+  <settings>
+     <setting name="jdbcTypeForNull" value="NULL" />
+  </settings>
+  -> 값이 없을 때 null로 설정
+
+
+* xml 파일에서 '<' 사용 : <![CDATA[<]]> (cdata 섹션)
+
+* SqlSession : connection 역할 + statement 역할
+  객체 생성 하려면 : SqlSession session = sqlSessionFactory.openSession();
+
+  - 매핑 파일의 정보는 resource/mybatis-config.xml에 담겨있다.
+
+  openSession() -> argument를 true로 주면 자동 커밋 모드로 동작
+		   		안주면 자동 커밋 모드가 아님. 
+
+
+- resultType은 필수 
+ 
+- 동적파라미터가 있으면 해당 select 태그의 아이디 값으로 호출할 때 두번 째 전달인자로
+  파라메터타입에 해당하는 전달인자 넣어줘야함.
+ 
+- sqlsession은 사용 후 반드시 close 할 것
+
+  namespace + id값 => id값 해당되는 mapper에 가서 해당 select 태그 실행.
+
+
+  
+
+
+
+
+===============================================
+오전 10:35 2019-07-05
+
+
+
+# Mapper.xml 에서
+  - ${ a } : a
+    #{ a } : 'a'
+
+  - 쿼리문 뒤에 세미콜론 x
+  - \" 주의
+  - 시간이 null로 바뀔 때 : to_char(writedate, "~~~") writedate 추가
+ 
+
+
+
+
+
+
