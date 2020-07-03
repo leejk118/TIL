@@ -106,11 +106,124 @@
         ```
 
 
+## PHP Echo / Print
+## PHP Data Types@@@@@
+* PHP는 다음의 데이터 타입을 지원
+    * String, Integer, Float, Boolean, Array, Object, NULL, Resource
+* PHP **var_dump()** 함수
+    * 데이터 타입과 값을 리턴해주는 함수
+
+    ### PHP String
+    * "Hello world!"
+    * single or double quotes 사용
+    ### PHP Integer
+    * 12, 3, 5983, 222
+        ```php
+        $x = 5985;
+        var_dump($x); // int(5985)
+        ```
+    ### PHP Float
+    
+
+## PHP Strings
+### strlen()
+* 문자열의 길이 리턴
+```php
+ echo strlen("Hello world!"); // 12
+```
+### str_word_count()
+* 문자열안의 단어 개수 리턴
+```php
+echo str_word_count("Hello world!"); // 2
+```
+### strrev()
+* 문자열을 뒤집어서 리턴
+```php
+echo strrev("Hello world!"); // !dlrow olleH
+```
+### strpos()
+* 문자열에서 텍스트 검색
+```php
+echo strpos("Hello world!", "world"); // 6
+```
+### str_replace()
+* 문자열 내의 텍스트 대체
+```php
+echo str_replace("world", "Dolly", "Hello world!"); // Hello Dolly!
+```
+> string reference : https://www.w3schools.com/php/php_ref_string.asp
+
+
+
+## PHP Numbers@@@@@
+## PHP Math@@@@@
+## PHP Constants@@@@@
+* 유효한 상수이름은 문자나 _로시작한다. (`$` 사인이 붙지 않는다.)
+* 변수와 달리, 상수는 자동적으로 글로벌하게 사용가능하다.
+
+    ### PHP 상수 생성
+    * 상수를 만들기 위해선 `define()` 함수를 사용한다.
+    * Syntax
+    define(name, value, case-insensitive)
+        * name : 상수의 이름을 정의
+        * value : 상수의 값 정의
+        * case-insensitive : 상수 이름이 대소문자 구분하는 지 정의, 기본은 false 값
+    * PHP 상수 배열
+        * PHP 7에서는배열도 상수로 생성 가능하다.
+            ```php
+            define("cars", [
+                "Audi",
+                "BMW",
+                "Toyota"
+            ]);
+            ```
+    
+
+## PHP Operators
+### 산술연산자
+### 대입연산자
+### 비교연산자
+### 증감연산자
+### 논리연산자
+### 문자열연산자
+* `.`
+    * Concatenation
+        ```php
+        $txt1 = "Hello";
+        $txt2 = " world!";
+        echo $txt1 . $txt2; // Hello world!
+        ```
+* `.=`
+    * Concatenation assignment
+        ```php
+        $txt1 = "Hello";
+        $txt2 = " world!";
+        $txt1 .= $txt2;
+        echo $txt1; // Hello world!
+        ```
+        
 
 
 
 
 
 
+
+
+
+
+## PHP OOP
+### Classes and Objects
+* Class 정의
+    * Syntax
+        ```php
+        <?php
+        class Fruit {
+            //
+        }
+        ?>
+        ```
+        asdf
+    
 
 
