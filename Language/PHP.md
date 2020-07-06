@@ -223,7 +223,66 @@ echo str_replace("world", "Dolly", "Hello world!"); // Hello Dolly!
         }
         ?>
         ```
-        asdf
-    
+        ```php
+        <?php 
+        class Fruit {
+            // properties
+            public $name;
+            public $color;
+            
+            // methods
+            function set_name($name){
+                $this->name = $name;
+            }
+            function get_name(){
+                return $this->name;
+            }
+        }
+        ```
+    * 클래스에서 변수들은 프로퍼티, 함수들은 메서드라고 불린다.
+* object 정의
+    * 클래스의 오브젝트들은 `new`키워드로 생성된다.
+        ```php
+        class Fruit {
+            //
+        }
+        
+        $apple = new Fruit();
+        $banana = new Fruit();
+        
+        $apple->set_name('Apple');
+        ```
+* `$this` 키워드
+    * 현재 객체를 말하고, 메서드 안에서만 사용가능하다.
+
+* `instanceof` 키워드
+    * 오브젝트가 특정 클래스에 속해있는지 확인할 수 있다.
+        ```php
+        <?php
+        $apple = new Fruit();
+        var_dump($apple instanceof Fruit); // bool(true)
+        ?>
+
+* `__contstruct` Function
+    * 생성자는 객체 생성 시 프로퍼티를 초기화할 수 있다.
+    * 클래스에서 `__construct()`함수를 만들면, PHP는 자동적으로 객체를 생성할 때 이 함수를 부른다.
+    * 언더스코어 2개로 시작함에 유의하자.
+
+* `__destruct` Function
+    * 소멸자는 객체가 소멸되거나 스크립트가 멈춤 혹은 종료 시 불린다.
+    * 클래스에서 `__destruct()`함수를 만들면 PHP는 자동적으로 스크립트의 마지막에 이 함수를 부른다.
+    * 언더스코어 2개로 시작함에 유의하자.
+
+* Access Modifiers
+    * properties와 methods는 어디서 접근 가능할지 정할수 있는 접근제한자를 가질 수 있다.
+    * 3가지 접근 제한자가 존재한다.
+        * `public`
+            property 또는 method를 어디에서나 접근가능. default값
+        * `protected`
+            property 또는 method를 클래스 내에서 또는, 그 클래스로 부터 파생된 클래스에서만 접근 가능.
+        * `private`
+            오직 클래스 내에서만 접근 가능.
+            
+* 상속 (Inheritance)
 
 
