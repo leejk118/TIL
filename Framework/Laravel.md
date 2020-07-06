@@ -1,4 +1,6 @@
 # Laravel Framework
+> 출처 : 쉽게 배우는 라라벨 기초
+
 * laravel 5.8 version setup
     `composer create-project laravel/laravel projectName "5.8.*"`
 
@@ -322,9 +324,9 @@ return view('welcome')->withBooks($books);
         <div class="px-64">
             <h1 class="font-bold text-3xl">Tasks List</h1>
             <ul>
-                  @foreach($tasks as $task)
+                @foreach($tasks as $task)
                     <li class="border m-3 p-3">Title: {{ $task->title }} <small class="float-right">Created at {{ $tasks->created_at }} </small></li>
-                    @endforeach
+                @endforeach
             </ul>
         </div>
         @endsection
@@ -336,8 +338,127 @@ return view('welcome')->withBooks($books);
 > GET /tasks/{id}
 
 * web.php
+    ```php
+    Route::get('/tasks/{task}', 'TaskController@show');
+    ```
+* TaskController.php
+    ```php
+    public function show(Task $task){
+        return view('tasks.show', [
+            'task' => $task;
+        ]);
+    }
+    ```
+    > laravel에선 `Task`를 파라메터로 설정하면, 라라벨에서 자동으로 Task 를 받아온다.
+    
+* resources/views/tasks/show.blade.php
+    ```php
+        @extends("layout")
+        @section('content')
+            Title : {{ $task->title }} <br>
+            Body : {{ $task->body }} <br>
+            <div class="border"> {{ $task->body }} </div>
+        @endsection
+    ```
+    > 생략
+
+*tasks/index.blade.php
+    
+> task 생성하면 바로 디테일 페이지로 이동하게 설정
 
 
+## 태스크 수정
+> GET /tasks/{task}/edit
+
+* 수정 버튼 생성
+    * show.blade.php
+        ```php
+        <button>Edit</button>
+        ```
+* edit 페이지 생성
+    * web.php
+        ```php
+        Route::get('/tasks/{task}/edit', 'TaskController@edit');
+        ```
+    * TaskController.php
+        ```php
+        public function edit(Task $task){
+            return view('tasks.edit', [
+                'task' => $task
+            ]);
+        }
+        ```
+    * tasks/edit.blade.php
+        > create 복사
+
+        ```html
+             <div class="px-64">
+                <form action="/tasks" method="POST">
+                    @method('PUT')
+                    @csrf
+                    
+                    <label class="block" for="title">Title</label>
+                    <input class="border w-full" type="text" name="title" id="title" value="{{ $task->title }}"><br>
+                    <label class="block" for="body">Body</label` >
+                    <textarea class="border w-full" name="body" id="body" cols="30" rows="10" value="{{$task->body}}"></textarea><br>
+                    
+                    <button class="bg-blue-600 text-white px-4 py-2 float right">Submit</button>
+                </form>
+            </div>
+        ```
+* 태스크 업데이트 구현
+    > PUT /tasks/{task} update
+
+    * web.php
+        ```php
+        Route::put('/tasks/{task}', 'TaskController@update');
+        ```
+        
+
+## 태스크 삭제
+> DELETE /tasks/{id} destroy
+
+* 태스크 삭제
+    * web.php
+        ```php
+        Route::delete('/tasks/{task}', 'TaskController@destroy');
+        ```
+    * TaskController.php
+        ```php
+            public function destroy(Task $task){
+                $task->delete();
+                
+                return redirect('/tasks');
+            }
+        ```
+    * show.blade.php
+        > delete 버튼 생성
+        
+        ```html
+            <form method="POST" action="/tasks/{{ $task->id }}" class="float-right ml-2">
+                @method('DELETE')
+                @csrf
+                <button class="bg-red-500 text-white hover:bg-red-600 px-4 py-1">Delete</button>
+            </form>
+        ```
+        > html에선 get, post 이외에 사용불가 
+        
+* create 버튼 생성
+    * index.blade.php
+        ```php
+        <a href="/tasks/create">
+            <button class="bg-green-500 hover:bg-green-600 px-4 py-2">Create Task </button>
+        </a>
+        ```
+* 데이터 최신순 정렬
+    * `php artisan tinker`
+        * `App\Task::all()`
+        * `App\Task::latest()->get()`
+    * TaskController.php
+        ```php
+            $tasks = Task::latest()->get();
+        ```
+        
 
 
 
