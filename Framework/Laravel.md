@@ -459,6 +459,81 @@ return view('welcome')->withBooks($books);
             $tasks = Task::latest()->get();
         ```
         
+## 폼 Validation
+> create 시 아무것도 입력 안하면 error
+title, body가 필요하다고 설정했기 때문
+
+> required와 서버에서 2가지 설정 모두 권장
+
+* create.blade.php
+    *   required 추가
+    ```php
+        
+    ```
+* TaskController.php
+    ```php
+        public function store(){
+            request()->validate([
+                'title' => 'required',
+                'body' => 'required'
+            ]);
+        }
+    ```
+* create.blade.php
+    ```php
+    @error('title')
+        <small class="text-red"> {{ $message }} </small>
+    @enderror
+    
+    @error('body')
+        <small class="text-red"> {{ $message }} </small>
+    @enderror
+    
+    @if($errors->any())
+        {{ $errors }}
+    @endif
+    ```
+> update 도 마찬가지로 유효성 검사 추가
+
+
+## 폼 기존 값 유지하기
+* create.blade.php
+    ```php
+    required value="{{ old('title') ? old('title') : '' }}"
+    ```
+    > body도 추가
+    
+    > edit form 도 적용
+    edit.blade.php
+    
+## 로그인 기능 구현
+* `php artisan make:auth`
+    * 파일, 로그인 폼 자동 생성됨
+    
+* 로그인 한사람만 태스크 페이지 볼 수 있게
+    * web.php
+        ```php
+        Route::prefix('tasks')->middleware('auth')->group([], function(){
+            Route::get('/', );
+            Route::get('/create', );
+            ...
+        });
+        ```
+        
+## 페이지에 헤더 추가하기
+* views/layouts/app.blade.php가 생성되어 있음
+* index.blade.php
+    ```php
+        @extends('layouts.app')
+        
+        // tailwind 추가
+    ```
+
+## 태스크 권한1
+
+
+
+
 
 
 
