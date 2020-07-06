@@ -530,10 +530,125 @@ title, body가 필요하다고 설정했기 때문
     ```
 
 ## 태스크 권한1
+> 누가 로그인하든 같은 태스크를 보게 됨
+> 태스크의 주인을 정해야 한다.
+
+> 데이터베이스 구조 수정
+
+* create_tasks_table.php
+    ```php
+        public function up(){
+            Schema::create('tasks', function(Blueprint $table){
+               $table->bigIncrements('id');
+               $table->unsingedBigInteger('user_id');
+               $table->string('title');
+               $table->longText('body');
+               $table->timestamps();
+               
+               $table->foreign('user_id')->references('id')->on('users');
+            });
+        }
+    ```
+    * php artisan migrate:fresh
+
+* task 버튼 생성
+    * app.blade.php
+        ```php
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a href="/tasks">Tasks</a>
+            </li>
+        </ul>
+        ```
+    * TaskController.php
+        ```php
+        public finction store(){
+            ...
+            
+            $values = request(['title', 'body']);
+            $values['user_id'] = auth()->id();
+            
+            $task = Task::create($values);
+        }
+        ```
+    * Task.php
+        ```php
+            protected $fillable = ['title', 'body', 'user_id'];
+        ```
+    
+    * TaskController.php
+        ```php
+            public function index(){
+                $tasks = Task::latest()->where('user_id', auth()->id())->get();
+                
+                // ...
+            }
+        ```
+
+## 태스크 권한2
+> url로 상대가 만든 디테일 페이지에도 접근가능한 상태
+> 자기가 만든 페이지만 가능하도록 
+
+* TaskController.php
+    ```php
+    public function show(Task $task){
+        if (auth()->id() != $task->user_id){
+            abort(403);
+        }
+        
+        // ...
+    }
+    ```
+    > abort_if(auth()->id() != $task->user_id, 403); 으로도 가능
+    
+    > abort_if(!auth()->user()->owns($task), 403);
+    
+    > abort_unless(auth()->user()->owns($task), 403);
+    
+    모두 동일
+    * User.php에서 owns() 메서드 생성
+        ```php
+        public function owns(Task $task){
+            return auth()->id() == $task->user_id;
+        }
+        ```
+ > update, delete 에도 추가 (접근못하게)
+ 
+## 라우트 Resource
+`php artisan route:list`
+
+* web.php
+    ```php
+    Route::resource('tasks', 'TaskController')->middleware('auth');
+    ```
 
 
+## 모델 관계
+> user와 task 관계 설정
 
+> user는 많은 task를 가질 수 있다.
 
-
-
+* User.php
+    ```php
+    public function tasks(){
+        return $this->hasMany(Task::class);
+    }
+    ```
+* Task.php
+    ```php
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+    ```
+* `php artisan tinker`
+    * `App\User::find(1)`
+    * `App\User::find(2)->tasks`
+    * `App\Task::find(2)`
+    * `App\Task::find(2)->user`
+* TaskController.php
+    ```php
+    public function index(){
+        $tasks = auth()->user()->tasks()->latest()->get();
+    }
+    ```
 
