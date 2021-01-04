@@ -76,6 +76,39 @@
 
 
 
+#### 1.3.3. 정의 함수 with Dependencies
+
+- 모듈이 의존성을 가지고 있으면, 첫번째 매개변수는 의존성의 이름들을 가진 배열이어야 하고, 두번째 전달인자는 정의하는 함수여야 한다.
+
+- 함수는 모든 의존성들이 로드된 후에 모듈을 정의하기 위해 호출될 것이다.
+
+- 함수는 모듈을 정의하는 객체를 리턴해야 한다.
+
+- 의존성들은 정의 함수에 함수 전달인자로 전달될 것이고, 의존성 배열에 있는 것과 같은 순서로 리스트화 될 것이다.
+
+  ```javascript
+  // my/shirt.js는 몇몇 의존성을 가지고 있다.
+  // cart와 inventory 모듈은 shirt.js와 같은 디렉토리에 있다.
+  define(["./cart", "./inventory"], function(cart, inventory) {
+      // "my/shirt" 모듈을 정의하기 위해 객체를 리턴한다.
+      return {
+          color: "blue",
+          size: "large",
+          addToCart: function() {
+              inventory.decrement(this);
+              cart.add(this);
+          }
+      }
+  });
+  ```
+
+  - 이 예제에서, my/shirt 모듈이 생성되고, 이것은 my/cart와 my/inventory에 의존하고 있다.
+  - 함수가 "cart", "inventory" 두 개의 전달인자를 호출한다.
+  - 이것은 './cart'와 "./inventory" 모듈 이름을 나타낸다.
+  - 함수는 my/cart와 my/inventory 모듈이 로드되기 전까지 호출되지 않고, 모듈들을 "cart"와 "inventory" 전달인자로 받는다.
+  - 전역으로 선언된 모듈들은 명시적으로 discourage하다?, 그래서 multiple 버젼의 모듈은 한 페이지 내에서 한번만 사용할 수 있다. 또한, 함수 전달인자들의 순서는 의존성들의 순서와 일치해야 한다.
+  - 함수 호출로부터 리턴되는 객체는 'my/shirt' 모듈을 정의한다. 이런 방식으로 모듈을 정의함으로써, 'my/shirt'가 전역객체로 존재하지 않게 되는 것이다.
+
 
 
 
@@ -83,6 +116,7 @@
 ## 3. Configuration options
 
 - `require()` 를 HTML 페이지 윗부분(또는 모듈이 정의되지 않은 맨 위 스크립트 파일)일 경우, configuration 객체는 첫번째 옵션으로 전달될 수 있다.
+  
   ```javascript
   <script src="scripts/require.js"></script>
   <script>
@@ -101,8 +135,8 @@
           }
       });
   </script>
-  ```
-
+```
+  
 - `require.config`를 data-main 시작점에서 부를 수도 있지만, data-main 스크립트는 비동기적으로 로딩됨을 유의해야 한다.
 - 
 
