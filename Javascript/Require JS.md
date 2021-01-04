@@ -41,7 +41,7 @@
 
 
 
-1.2 data-main Entry Point
+### 1.2 data-main Entry Point
 
 - `data-main` 속성은 requirejs가 스크립트를 로딩하기 시작하는지 체크해주는 특별한 속성이다.
 
@@ -68,7 +68,7 @@
 
 
 
-1.3 모듈 정의
+### 1.3 모듈 정의
 
 - 모듈은 기존 스크립트 파일과 다른데, well-scoped 객체가 정의되어 있다. 전역 네임스페이스를 오염시키는 것을 방지하기 위해
 - ㅇㅇ
@@ -80,13 +80,29 @@
 
 
 
+## 3. Configuration options
 
+- `require()` 를 HTML 페이지 윗부분(또는 모듈이 정의되지 않은 맨 위 스크립트 파일)일 경우, configuration 객체는 첫번째 옵션으로 전달될 수 있다.
+  ```javascript
+  <script src="scripts/require.js"></script>
+  <script>
+      require.config({
+      	baseUrl: "/another/path",
+  	    paths: {
+              "some": "some/v1.0"
+          },
+      	waitSeconds: 15
+  	});
+  	require(["some/module", "my/module", "a.js", "b.js"], {
+          function(someModule, myModule) {
+          	// 이 함수는 배열에 있는 의존성들이 모두 로드된 후 호출된다.
+              // 이 함수는 페이지가 로드되기 전에도 호출될 수 있다.
+              // 이 콜백함수는 옵션
+          }
+      });
+  </script>
+  ```
 
-
-
-
-
-
-
-
+- `require.config`를 data-main 시작점에서 부를 수도 있지만, data-main 스크립트는 비동기적으로 로딩됨을 유의해야 한다.
+- 
 
