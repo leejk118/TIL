@@ -13,6 +13,7 @@
 ### PHP Case Sensitivity
 * PHP에서 키워드들(`if`, `else`, `while`, `echo`, etc.), 클래스, 함수, 사용자 정의 함수들은 대소문자를 구분하지 않는다.
 * 그러나 모든 변수명은 대소문자를 구분한다.
+    
     > 예: `$color`, `$COLOR`, `$coLOR`는 모두 다르게 인식된다.
 
 
@@ -109,6 +110,7 @@
 ## PHP Echo / Print
 ## PHP Data Types@@@@@
 * PHP는 다음의 데이터 타입을 지원
+    
     * String, Integer, Float, Boolean, Array, Object, NULL, Resource
 * PHP **var_dump()** 함수
     * 데이터 타입과 값을 리턴해주는 함수
@@ -122,6 +124,7 @@
         $x = 5985;
         var_dump($x); // int(5985)
         ```
+    
     ### PHP Float
     
 
@@ -253,8 +256,9 @@ echo str_replace("world", "Dolly", "Hello world!"); // Hello Dolly!
         $apple->set_name('Apple');
         ```
 * `$this` 키워드
-    * 현재 객체를 말하고, 메서드 안에서만 사용가능하다.
-
+    
+* 현재 객체를 말하고, 메서드 안에서만 사용가능하다.
+    
 * `instanceof` 키워드
     * 오브젝트가 특정 클래스에 속해있는지 확인할 수 있다.
         ```php
@@ -262,7 +266,8 @@ echo str_replace("world", "Dolly", "Hello world!"); // Hello Dolly!
         $apple = new Fruit();
         var_dump($apple instanceof Fruit); // bool(true)
         ?>
-
+    ```
+    
 * `__contstruct` Function
     * 생성자는 객체 생성 시 프로퍼티를 초기화할 수 있다.
     * 클래스에서 `__construct()`함수를 만들면, PHP는 자동적으로 객체를 생성할 때 이 함수를 부른다.
@@ -282,7 +287,68 @@ echo str_replace("world", "Dolly", "Hello world!"); // Hello Dolly!
             property 또는 method를 클래스 내에서 또는, 그 클래스로 부터 파생된 클래스에서만 접근 가능.
         * `private`
             오직 클래스 내에서만 접근 가능.
-            
+    
 * 상속 (Inheritance)
 
+
+
+
+
+---
+
+
+
+- stdClass()
+
+  - 빈 클래스
+
+- explode
+
+  - 출처 https://www.codingfactory.net/10702
+  - 문자열을 분할하여 배열로 저장하는 함수
+  - PHP 4 이상
+  - `explode(delimiter, string [, limit] )`
+    - delimiter : 문자열 분할 기준
+    - string : 분할할 문자열
+    - limit : 옵션으로 분할할 개수 지정 (정수)
+
+  > $jbstring = 'one two three four';
+  >
+  > $jbexplode = explode(' ', $jbstring);
+  >
+  > [0] => one, [1] => two, [2] => three four
+
+  - limit가 음수인 경우 뒤에서 갯수만큼 제거
+
+- 중복연산자 `??` (null coalescing operator)
+
+  - 널 병합 연산자
+
+  - PHP 7
+
+  - 앞의 변수가 설정돼 있지 않으면 뒤의 값을 사용한다.
+
+  - ```php
+    $a = isset($a) ? $a : 1;
+    // 위와 동일
+    $a = $a ?? 1;
+    ```
+
+- 
+
+
+
+
+
+---
+
+
+
+### short_tag
+
+> 출처 https://unikys.tistory.com/246
+
+- php에는 `<?= $var ?>`와 같이 short tag로 HTML 소스 중간에 변수 출력을 간단하게 할 수 있었다.
+- 이 태그는 xml의 헤더에도 `<?`가 사용되는 것과 혼돈되기 때문에 권장하지 않는다.
+- `<?php echo $var ?>` 방식으로 사용할 것을 지향한다.
 
