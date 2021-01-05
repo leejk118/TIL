@@ -111,6 +111,12 @@
 
 
 
+#### 1.3.4. 함수로써 모듈 정의하기
+
+- 모듈은 객체를 리턴하지 않아야 한다. 
+
+
+
 
 
 ## 3. Configuration options
@@ -135,8 +141,6 @@
           }
       });
   </script>
-```
-  
-- `require.config`를 data-main 시작점에서 부를 수도 있지만, data-main 스크립트는 비동기적으로 로딩됨을 유의해야 한다.
-- 
+  ```
+- `require.config`를 data-main 시작점에서 부를 수도 있지만, data-main 스크립트는 비동기적으로 로딩됨을 유의해야 한다
 
